@@ -1,5 +1,5 @@
 <?php
-
+namespace Core;
 class Validator
 {
     //pure function is a function that is no contingent or dependent upon state or values from outside world

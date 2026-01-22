@@ -1,5 +1,6 @@
 <?php
 
+use Core\Database;
 $config = require base_path('config.php');
 $db = new Database($config['database']); //// router require database and we will has database class o yüzden eski sıralmalarını değiştirip router en alta aldık index içinde
 

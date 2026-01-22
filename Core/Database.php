@@ -1,6 +1,9 @@
 <?php
 //connect to the database, and execute a query.
+namespace Core;
+use PDO;
 class Database{
+
 
     public $connection;
     public $statement; ///
@@ -17,10 +20,11 @@ class Database{
         $this->connection = new PDO($dsn, $config['username'],
             $config['password'] , [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                //sadede namaspace core; olursa php /Core/PDO olarak okuyor burayoı ve doesnt exist o yüzdne global pdo için iki yol biri \PDO
         ]);
         /*
             $this->connection = PDO bağlantısı
-            Artık bu nesne veritabanına bağlı 
+            Artık bu nesne veritabanına bağlı
             FETCH_ASSOC → sonuçlar dizi olarak gelsin diye
         */
     }

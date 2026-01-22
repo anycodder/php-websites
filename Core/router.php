@@ -1,13 +1,13 @@
 <?php
 
-$routes = require 'routes.php';
+$routes = require base_path('routes.php');
 
 function abort($code = 404)
 {
 
 http_response_code($code);
 
-require "views/{$code}.php";
+require base_path("views/{$code}.php");
 
 die();
 }
@@ -16,7 +16,7 @@ die();
 function routerToController($uri , $routes)
 {
 if(array_key_exists($uri, $routes)) {
-require $routes[$uri];  //router require database and *router requires controller*
+require base_path($routes[$uri]);  //router require database and *router requires controller*
 }else{
 
 abort();
