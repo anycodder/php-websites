@@ -16,7 +16,13 @@ spl_autoload_register(function ($class) {
 
 //require base_path("Database.php");
 //require base_path("Response.php");
-require base_path("Core/router.php");
+//require base_path("Core/Router.php");
+$router = new \Core\Router();   //nitilize ettkik ama natığım yetmedi uraya
+$routes = require base_path('routes.php');
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+
+$method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'];
+$router->route($uri,$method);
 
 // *router require database* and we will has database class
 /*
@@ -34,8 +40,6 @@ Ama autoload sayesinde:
 
 $db = new Database();
 
-
-yazman yeterli 😎
 PHP kendi kendine Core/Database.php dosyasını yüklüyor.
  */
 
