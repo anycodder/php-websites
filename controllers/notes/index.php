@@ -1,8 +1,8 @@
 <?php
-
+use Core\App;
 use Core\Database;
-$config = require base_path('config.php');
-$db = new Database($config['database']); //// router require database and we will has database class o yüzden eski sıralmalarını değiştirip router en alta aldık index içinde
+
+$db = App::resolve(Database::class);
 
 
 $notes = $db->query("SELECT * FROM notes where user_id = 1")->get();
