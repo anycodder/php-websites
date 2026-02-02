@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 const BASE_PATH = __DIR__.'/../'; // bu “Projenin kök klasörü burasıdır" demek yani /Users/any/websites/demo/
 
 require BASE_PATH . "Core/function.php";

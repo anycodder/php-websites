@@ -12,13 +12,14 @@ class Validator
     }
 
     //mnatık anlamak için şuan kullanmıyoryz
-    /*
-     public static function email($value)
+
+     public static function email(string $value): bool
     {
         //Validator::email('jefreyy@@example.com')
-        filter_var($value, FILTER_VALIDATE_EMAIL);
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
+
     }
-    */
+
 }
 
 
