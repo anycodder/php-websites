@@ -30,7 +30,7 @@ $user = $db->query(' select * from users where email = :email', [
 ])->find();
 
 if($user){
-    // if yes, redirect to login page
+    // if yes, redirect to login page //Redirect = kullanıcıyı başka bir sayfaya göndermek.
     header('location: /');
 }
 else{
@@ -46,6 +46,13 @@ $_SESSION['user'] = [
     'email' => $email,
 ];
 
+//“Bu kullanıcı artık giriş yaptı” bilgisini geçici olarak sunucuda tut demek.
+//Yani kullanıcı sayfalar arasında gezerken:
+//Tekrar tekrar login olmasına gerek kalmasın diye
+//Kim olduğu hatırlansın diye
+//özet:Session = kullanıcının giriş yaptığını geçici olarak hatırlamak için kullanılır.
+
 header('location: /');
 exit();
+//neden exit kullanıyoru çünkü “Redirect’ten (header) sonra kodun devam etmesini engellemek için.”
 
