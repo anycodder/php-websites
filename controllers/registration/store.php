@@ -37,14 +37,12 @@ else{
     // if no , save one to database, and then log the user  in
     $db->query(' INSERT INTO users (email, password) VALUES (:email, :password)', [
         'email' => $email,
-        'password' => $password
+        'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 }
 
 //mark that the user has logged in
-$_SESSION['user'] = [
-    'email' => $email,
-];
+login($user);
 
 //“Bu kullanıcı artık giriş yaptı” bilgisini geçici olarak sunucuda tut demek.
 //Yani kullanıcı sayfalar arasında gezerken:
