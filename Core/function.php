@@ -51,7 +51,15 @@ function login($user)
         'email' => $user['email']
     ];
 
-    session_regenerate_id(true);
+    session_regenerate_id(true); //id güvence altına alma sor chat gbtye / birde session_regenerate_id üzerine gelince görevi göstersin
 }
 
+function logout()
+{
+    $_SESSION = [];
+    session_destroy();
+
+    $params = session_get_cookie_params();
+    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
 ?>
