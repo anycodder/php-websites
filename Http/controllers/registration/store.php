@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -42,7 +43,8 @@ else{
 }
 
 //mark that the user has logged in
-login($user);
+//login($user);
+Session::put('user', $user);
 
 //“Bu kullanıcı artık giriş yaptı” bilgisini geçici olarak sunucuda tut demek.
 //Yani kullanıcı sayfalar arasında gezerken:

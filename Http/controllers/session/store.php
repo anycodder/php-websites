@@ -1,11 +1,12 @@
 <?php
 
-use Core\App;
+//use Core\App; h.ç.s
 use Core\Authenticator;
-use Core\Database;
+//use Core\Database; h.ç.s
+use Core\Session;
 use Http\Forms\LoginForm;
 
-$db = App::resolve(Database::class);
+//$db = App::resolve(Database::class); h.ç.s
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -20,6 +21,14 @@ if ($form->validate($email, $password)) {
     $form->error('email', 'No matching account found for that email address and password.');
 }
 
-return view('session/create.view.php', [
-    'errors' => $form->errors()
-]);
+
+
+Session::flash('errors', $form->errors());
+
+return redirect('/login');
+
+//Normalde
+//return redirect('login') işe yarardı ama error gibi spesik bir problem var
+//return view('session/create.view.php', [
+//    'errors' => $form->errors()
+//]);
