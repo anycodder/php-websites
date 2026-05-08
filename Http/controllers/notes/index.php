@@ -5,7 +5,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 
-$notes = $db->query("SELECT * FROM notes where user_id = 1")->get();
+$notes = $db->query("SELECT * FROM notes where user_id = 10")->get();
 
 
 

@@ -4,7 +4,7 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 1;
+$currentUserId = 10;
 
 
 //superglobal _GEt //URL’deki query string (parametre) verilerini tutar. //Örn: /index.php?name=Ayşe → $_GET['name'] = "Ayşe"

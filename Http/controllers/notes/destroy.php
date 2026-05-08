@@ -5,7 +5,7 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 1;
+$currentUserId = 10;
 
     $note = $db->query('SELECT * FROM notes where id = :id', [
         ':id'=> $_POST['id']   //-------$id = $_post['id'] yerine direk buray ayazdık.
