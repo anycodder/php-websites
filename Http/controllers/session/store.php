@@ -8,27 +8,25 @@ use Http\Forms\LoginForm;
 
 //$db = App::resolve(Database::class); h.ç.s
 
-$email = $_POST['email'];
-$password = $_POST['password'];
 
-$form = new LoginForm();
 
-if ($form->validate($email, $password)) {
-    if ((new Authenticator)->attempt($email, $password)) {
-        redirect('/');
-    }
+$form = LoginForm::validate($attributes = [
+    'email' => $_POST['email'],
+    'password' => $_POST['password']
+]);
 
-    $form->error('email', 'No matching account found for that email address and password.');
+$signedIn = (new Authenticator)->attempt(
+    $attributes['email'], $attributes['password']
+);
+
+
+if (!$signedIn) {
+    $form->error(
+        'email', 'No matching account found for that email address and password.'
+    )->throw();
 }
 
-
-
-Session::flash('errors', $form->errors());
-Session::flash('old', [
-    'email' => $_POST['email']
-]); //email giriş syafasında güncellediğinde tutma
-
-return redirect('/login');
+redirect('/');
 
 //Normalde
 //return redirect('login') işe yarardı ama error gibi spesik bir problem var

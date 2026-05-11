@@ -54,6 +54,10 @@ class Router
         return $this;
     }
 
+    public function previousUrl()
+    {
+        return $_SERVER['HTTP_REFERER'];  //dinamik redirect
+    }
     public function route($uri, $method)
     {
         foreach ($this->routes as $route) {
@@ -63,5 +67,15 @@ class Router
                 return require base_path('Http/controllers/'  . $route['controller']);
             }
         }
+        $this->abort();
+    }
+
+    protected function abort($code = 404)
+    {
+        http_response_code($code);
+
+        require base_path("views/{$code}.php");
+
+        die();
     }
 }
